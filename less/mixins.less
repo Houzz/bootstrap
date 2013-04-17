@@ -9,7 +9,7 @@
 // Clearfix
 // --------
 // For clearing floats like a boss h5bp.com/q
-.clearfix {
+.clearfix() {
   *zoom: 1;
   &:before,
   &:after {
@@ -585,7 +585,11 @@
       .offsetX(@index - 1);
     }
     .offsetX (0) {}
-
+	.vgridX (@index) when (@index > 0) {
+		.vgrid@{index} { .vgrid(@index); }
+		.vgridX(@index - 1);
+	}
+	.vgridX (0) {}
     .offset (@columns) {
       margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns + 1));
     }
@@ -593,7 +597,9 @@
     .span (@columns) {
       width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
     }
-
+	.vgrid (@columns) {
+		height: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+	}
     .row {
       margin-left: @gridGutterWidth * -1;
       .clearfix();
@@ -614,7 +620,7 @@
     // generate .spanX and .offsetX
     .spanX (@gridColumns);
     .offsetX (@gridColumns);
-
+	.vgridX (@gridColumns);
   }
 
   .fluid (@fluidGridColumnWidth, @fluidGridGutterWidth) {
